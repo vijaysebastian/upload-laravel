@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FileUploadRequest;
 use App\Jobs\FileUpload;
 use Illuminate\Support\Facades\Bus;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class FileUploadController extends Controller
@@ -36,7 +35,6 @@ class FileUploadController extends Controller
             }
             return back()->with('success_msg', 'The file import was successful');
         } catch (\Exception $e) {
-            DB::rollBack();
             return back()->with('error_msg', $e->getMessage());
         }
     }
